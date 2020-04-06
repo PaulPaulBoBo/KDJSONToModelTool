@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A0D0420242DCB950029496A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D041F242DCB950029496A /* AppDelegate.m */; };
+		3A0D0423242DCB950029496A /* KDJSONToModelTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D0421242DCB950029496A /* KDJSONToModelTool.xcdatamodeld */; };
+		3A0D0425242DCB960029496A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D0424242DCB960029496A /* Assets.xcassets */; };
+		3A0D0428242DCB960029496A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D0426242DCB960029496A /* MainMenu.xib */; };
+		3A0D042B242DCB960029496A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D042A242DCB960029496A /* main.m */; };
+		3A0D043A242DDE940029496A /* RootWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D0438242DDE940029496A /* RootWindowController.m */; };
+		3A0D043B242DDE940029496A /* RootWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D0439242DDE940029496A /* RootWindowController.xib */; };
+		3A0D0441242DEB9A0029496A /* KDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D0440242DEB9A0029496A /* KDTool.m */; };
+		3AF985BA242DFDBF00E5C916 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF985B8242DFDBF00E5C916 /* RootViewController.m */; };
+		3AF985BB242DFDBF00E5C916 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AF985B9242DFDBF00E5C916 /* RootViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3A0D041B242DCB950029496A /* KDJSONToModelTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KDJSONToModelTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A0D041E242DCB950029496A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3A0D041F242DCB950029496A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3A0D0422242DCB950029496A /* KDJSONToModelTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KDJSONToModelTool.xcdatamodel; sourceTree = "<group>"; };
+		3A0D0424242DCB960029496A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3A0D0427242DCB960029496A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		3A0D0429242DCB960029496A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A0D042A242DCB960029496A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A0D042C242DCB960029496A /* KDJSONToModelTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KDJSONToModelTool.entitlements; sourceTree = "<group>"; };
+		3A0D0437242DDE940029496A /* RootWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootWindowController.h; sourceTree = "<group>"; };
+		3A0D0438242DDE940029496A /* RootWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootWindowController.m; sourceTree = "<group>"; };
+		3A0D0439242DDE940029496A /* RootWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootWindowController.xib; sourceTree = "<group>"; };
+		3A0D043F242DEB9A0029496A /* KDTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KDTool.h; sourceTree = "<group>"; };
+		3A0D0440242DEB9A0029496A /* KDTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KDTool.m; sourceTree = "<group>"; };
+		3AF985B7242DFDBF00E5C916 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		3AF985B8242DFDBF00E5C916 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		3AF985B9242DFDBF00E5C916 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3A0D0418242DCB950029496A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3A0D0412242DCB950029496A = {
+			isa = PBXGroup;
+			children = (
+				3A0D041D242DCB950029496A /* KDJSONToModelTool */,
+				3A0D041C242DCB950029496A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3A0D041C242DCB950029496A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3A0D041B242DCB950029496A /* KDJSONToModelTool.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3A0D041D242DCB950029496A /* KDJSONToModelTool */ = {
+			isa = PBXGroup;
+			children = (
+				3A0D041E242DCB950029496A /* AppDelegate.h */,
+				3A0D041F242DCB950029496A /* AppDelegate.m */,
+				3A0D0437242DDE940029496A /* RootWindowController.h */,
+				3A0D0438242DDE940029496A /* RootWindowController.m */,
+				3A0D0439242DDE940029496A /* RootWindowController.xib */,
+				3AF985B7242DFDBF00E5C916 /* RootViewController.h */,
+				3AF985B8242DFDBF00E5C916 /* RootViewController.m */,
+				3AF985B9242DFDBF00E5C916 /* RootViewController.xib */,
+				3A0D043F242DEB9A0029496A /* KDTool.h */,
+				3A0D0440242DEB9A0029496A /* KDTool.m */,
+				3A0D0424242DCB960029496A /* Assets.xcassets */,
+				3A0D0426242DCB960029496A /* MainMenu.xib */,
+				3A0D0429242DCB960029496A /* Info.plist */,
+				3A0D042A242DCB960029496A /* main.m */,
+				3A0D042C242DCB960029496A /* KDJSONToModelTool.entitlements */,
+				3A0D0421242DCB950029496A /* KDJSONToModelTool.xcdatamodeld */,
+			);
+			path = KDJSONToModelTool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A0D041A242DCB950029496A /* KDJSONToModelTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3A0D042F242DCB960029496A /* Build configuration list for PBXNativeTarget "KDJSONToModelTool" */;
+			buildPhases = (
+				3A0D0417242DCB950029496A /* Sources */,
+				3A0D0418242DCB950029496A /* Frameworks */,
+				3A0D0419242DCB950029496A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KDJSONToModelTool;
+			productName = KDJSONToModelTool;
+			productReference = 3A0D041B242DCB950029496A /* KDJSONToModelTool.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3A0D0413242DCB950029496A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = LiuBo;
+				TargetAttributes = {
+					3A0D041A242DCB950029496A = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 3A0D0416242DCB950029496A /* Build configuration list for PBXProject "KDJSONToModelTool" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3A0D0412242DCB950029496A;
+			productRefGroup = 3A0D041C242DCB950029496A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A0D041A242DCB950029496A /* KDJSONToModelTool */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3A0D0419242DCB950029496A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0D043B242DDE940029496A /* RootWindowController.xib in Resources */,
+				3A0D0425242DCB960029496A /* Assets.xcassets in Resources */,
+				3AF985BB242DFDBF00E5C916 /* RootViewController.xib in Resources */,
+				3A0D0428242DCB960029496A /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3A0D0417242DCB950029496A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A0D0420242DCB950029496A /* AppDelegate.m in Sources */,
+				3A0D0441242DEB9A0029496A /* KDTool.m in Sources */,
+				3AF985BA242DFDBF00E5C916 /* RootViewController.m in Sources */,
+				3A0D043A242DDE940029496A /* RootWindowController.m in Sources */,
+				3A0D042B242DCB960029496A /* main.m in Sources */,
+				3A0D0423242DCB950029496A /* KDJSONToModelTool.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3A0D0426242DCB960029496A /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3A0D0427242DCB960029496A /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3A0D042D242DCB960029496A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3A0D042E242DCB960029496A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		3A0D0430242DCB960029496A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KDJSONToModelTool/KDJSONToModelTool.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Z93M95VE4P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = KDJSONToModelTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = paul.JSONToModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = JSONToModel_dev;
+			};
+			name = Debug;
+		};
+		3A0D0431242DCB960029496A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KDJSONToModelTool/KDJSONToModelTool.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = Z93M95VE4P;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = KDJSONToModelTool/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = paul.JSONToModel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = JSONToModel_dev;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3A0D0416242DCB950029496A /* Build configuration list for PBXProject "KDJSONToModelTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A0D042D242DCB960029496A /* Debug */,
+				3A0D042E242DCB960029496A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3A0D042F242DCB960029496A /* Build configuration list for PBXNativeTarget "KDJSONToModelTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3A0D0430242DCB960029496A /* Debug */,
+				3A0D0431242DCB960029496A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3A0D0421242DCB950029496A /* KDJSONToModelTool.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3A0D0422242DCB950029496A /* KDJSONToModelTool.xcdatamodel */,
+			);
+			currentVersion = 3A0D0422242DCB950029496A /* KDJSONToModelTool.xcdatamodel */;
+			path = KDJSONToModelTool.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3A0D0413242DCB950029496A /* Project object */;
+}

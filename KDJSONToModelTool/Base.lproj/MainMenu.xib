@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
+            <connections>
+                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+            <items>
+                <menuItem title="KDJSONToModelTool" id="1Xt-HY-uBw">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="KDJSONToModelTool" systemMenu="apple" id="uQy-DD-JDr">
+                        <items>
+                            <menuItem title="About KDJSONToModelTool" id="5kV-Vb-QxS">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-1" id="Exp-CZ-Vem"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                            <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                            <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                            <menuItem title="Quit KDJSONToModelTool" keyEquivalent="q" id="4sb-4s-VLi">
+                                <connections>
+                                    <action selector="terminate:" target="-1" id="Te7-pn-YzF"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="48" y="-387"/>
+        </menu>
+        <window title="JSONToModel" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="335" y="390" width="526" height="360"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="526" height="360"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="13P-cW-THC">
+                        <rect key="frame" x="177" y="310" width="172" height="30"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="JSON字典转模型" id="PW4-xb-NGq">
+                            <font key="font" size="22" name="PingFangSC-Regular"/>
+                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n5l-8Z-0fM">
+                        <rect key="frame" x="18" y="63" width="490" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="gsA-UD-7Yr"/>
+                        </constraints>
+                        <buttonCell key="cell" type="bevel" title="立 即 开 启" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xDo-cX-Wpi">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="pushToMainView:" target="Voe-Tx-rLC" id="g4O-rf-MTi"/>
+                        </connections>
+                    </button>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XUM-u2-zKs">
+                        <rect key="frame" x="203" y="170" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="120" id="4uG-9F-JIq"/>
+                            <constraint firstAttribute="width" constant="120" id="xFU-1V-2vZ"/>
+                        </constraints>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo" id="ENh-P7-tNv"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="siE-cb-Vw1">
+                        <rect key="frame" x="127" y="20" width="273" height="18"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Copyright © 2020 LiuBo. All rights reserved." id="5Ng-bo-3kP">
+                            <font key="font" size="13" name="PingFangSC-Regular"/>
+                            <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="13P-cW-THC" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="3Gg-1Z-lrd"/>
+                    <constraint firstAttribute="bottom" secondItem="n5l-8Z-0fM" secondAttribute="bottom" constant="66" id="CIB-8M-TR7"/>
+                    <constraint firstItem="XUM-u2-zKs" firstAttribute="top" secondItem="13P-cW-THC" secondAttribute="bottom" constant="20" id="OAf-f5-ljG"/>
+                    <constraint firstItem="n5l-8Z-0fM" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="UjU-fb-QfK"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XUM-u2-zKs" secondAttribute="trailing" constant="150" id="Z6O-qK-hdp"/>
+                    <constraint firstItem="13P-cW-THC" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="aWp-QL-xfH"/>
+                    <constraint firstItem="XUM-u2-zKs" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="eGl-0d-mtu"/>
+                    <constraint firstAttribute="bottom" secondItem="siE-cb-Vw1" secondAttribute="bottom" constant="20" id="ggc-Fm-rS3"/>
+                    <constraint firstItem="XUM-u2-zKs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="150" id="hA4-6b-5X2"/>
+                    <constraint firstItem="n5l-8Z-0fM" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="jch-Dy-Wyx"/>
+                    <constraint firstItem="n5l-8Z-0fM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XUM-u2-zKs" secondAttribute="bottom" constant="50" id="qmt-st-3GR"/>
+                    <constraint firstItem="siE-cb-Vw1" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="uXp-PL-46U"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="211" y="-126"/>
+        </window>
+    </objects>
+    <resources>
+        <image name="logo" width="667" height="667"/>
+    </resources>
+</document>
