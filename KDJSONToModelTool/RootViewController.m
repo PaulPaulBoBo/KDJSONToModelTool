@@ -118,14 +118,34 @@
         id key = [allKeys objectAtIndex:i];
         NSString *tmpStr = @"";
         if([obj isKindOfClass:[NSString class]]) {
+            NSString *tmpObj = [NSString stringWithFormat:@"%@", obj];
+            if([tmpObj rangeOfString:@"-"].length > 0 &&
+               [tmpObj rangeOfString:@"T"].length > 0 &&
+               [tmpObj rangeOfString:@"Z"].length > 0) {
+                NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
+                tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n",[NSDate class], transKey];
+            } else {
+                NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
+                tmpStr = [NSString stringWithFormat:@"@property (nonatomic, copy  ) %@ *%@; //\n",[NSString class], transKey];
+            }
+        } else if([[NSString stringWithFormat:@"%@", [obj class]] isEqual:@"__NSCFBoolean"]) {
             NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
-            tmpStr = [NSString stringWithFormat:@"@property (nonatomic, copy  ) %@ *%@; //\n",[NSString class], transKey];
+            tmpStr = [NSString stringWithFormat:@"@property (nonatomic, assign) BOOL %@; //\n", transKey];
         } else if([obj isKindOfClass:[NSNumber class]]) {
             NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
             tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n",[NSNumber class], transKey];
         } else if([obj isKindOfClass:[NSArray class]]) {
-            tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@<%@Protocol> *%@; //\n",[NSArray class], [self upperFirstChar:key], key];
-            [arrayClasses addObject:@{key:obj}];
+            NSArray *arr = obj;
+            if(arr.count > 0) {
+                if([[arr objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                    tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@<%@Model> *%@; //\n",[NSArray class], [self upperFirstChar:key], key];
+                    [arrayClasses addObject:@{key:obj}];
+                } else {
+                    tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n",[NSArray class], key];
+                }
+            } else {
+                tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n",[NSArray class], key];
+            }
         } else if([obj isKindOfClass:[NSDictionary class]]) {
             NSString *dicName = [NSString stringWithFormat:@"%@%@", [self upperFirstChar:name], [self upperFirstChar:key]];
             tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n", dicName, key];
@@ -165,7 +185,9 @@
             NSArray *allValue = [dic allValues];
             for (int j = 0; j < allKeys.count; j++) {
                 if(allValue.count > 0) {
-                    [subDicStr appendString:[self createSingleModelHWithDic:[allValue objectAtIndex:0] name:[allKeys objectAtIndex:0] baseClassName:baseClassName hasProtocol:NO]];
+                    if([[allValue objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                        [subDicStr appendString:[self createSingleModelHWithDic:[allValue objectAtIndex:0] name:[allKeys objectAtIndex:0] baseClassName:baseClassName hasProtocol:NO]];
+                    }
                 }
             }
         }
@@ -197,7 +219,7 @@
 
 -(NSString *)insertPropertyToFileFormat:(NSString *)propertyStr fileName:(NSString *)fileName baseClassName:(NSString *)baseClassName hasProtocol:(BOOL)hasProtocol {
     if(hasProtocol) {
-        return [NSString stringWithFormat:@"/// <#Description#>\n@protocol %@Protocol<NSObject>\n@end\n@interface %@Protocol : %@\n\n%@\n@end\n", fileName, fileName, baseClassName, propertyStr];
+        return [NSString stringWithFormat:@"/// <#Description#>\n@protocol %@Model<NSObject>\n@end\n@interface %@Model : %@\n\n%@\n@end\n", fileName, fileName, baseClassName, propertyStr];
     } else {
         return [NSString stringWithFormat:@"/// <#Description#>\n@interface %@ : %@\n\n%@\n@end\n", fileName, baseClassName, propertyStr];
     }
@@ -234,7 +256,7 @@
         }
     }
     if(hasProtocol) {
-        name = [NSString stringWithFormat:@"%@Protocol", name];
+        name = [NSString stringWithFormat:@"%@Model", name];
     }
     NSString *implementationStr = [self insertKeyMaperDic:disableKeyDic fileName:name];
     NSMutableString *subArrayStr = [NSMutableString new];
@@ -254,9 +276,9 @@
             }
         }
     }
-    if(subArrayStr.length > 0) {
-        [subArrayStr appendString:@"\n"];
-    }
+//    if(subArrayStr.length > 0) {
+//        [subArrayStr appendString:@"\n"];
+//    }
     NSMutableString *subDicStr = [NSMutableString new];
     if(dicClasses.count > 0) {
         for (int i = 0; i < dicClasses.count; i ++) {
@@ -265,14 +287,16 @@
             NSArray *allValue = [dic allValues];
             for (int j = 0; j < allKeys.count; j++) {
                 if(allValue.count > 0) {
-                    [subDicStr appendString:[self createSingleModelMWithDic:[allValue objectAtIndex:0] name:[allKeys objectAtIndex:0] hasProtocol:NO]];
+                    if([[allValue objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                        [subDicStr appendString:[self createSingleModelMWithDic:[allValue objectAtIndex:0] name:[allKeys objectAtIndex:0] hasProtocol:NO]];
+                    }
                 }
             }
         }
     }
-    if(subDicStr.length > 0) {
-        [subDicStr appendString:@"\n"];
-    }
+//    if(subDicStr.length > 0) {
+//        [subDicStr appendString:@"\n"];
+//    }
     return [NSString stringWithFormat:@"%@%@%@",subArrayStr, subDicStr, implementationStr];
 }
 
@@ -281,20 +305,26 @@
         NSMutableString *dicStr = [NSMutableString new];
         NSArray *allKeys = [dic allKeys];
         NSArray *allValue = [dic allValues];
-        for (int i = 0; i < allKeys.count; i++) {
-            id key = [allKeys objectAtIndex:i];
-            id value = [allValue objectAtIndex:i];
-            if(i == 0) {
-                [dicStr appendFormat:@"@{@\"%@\":@\"%@\",", key, value];
-            } else if(i == allKeys.count-1) {
-                [dicStr appendFormat:@"@\"%@\":@\"%@\"}", key, value];
-            } else {
-                [dicStr appendFormat:@"@\"%@\":@\"%@\",", key, value];
+        if(allKeys.count == 1) {
+            id key = [allKeys objectAtIndex:0];
+            id value = [allValue objectAtIndex:0];
+            [dicStr appendFormat:@"@{@\"%@\":@\"%@\"}", key, value];
+        } else {
+            for (int i = 0; i < allKeys.count; i++) {
+                id key = [allKeys objectAtIndex:i];
+                id value = [allValue objectAtIndex:i];
+                if(i == 0) {
+                    [dicStr appendFormat:@"@{@\"%@\":@\"%@\",", key, value];
+                } else if(i == allKeys.count-1) {
+                    [dicStr appendFormat:@"@\"%@\":@\"%@\"}", key, value];
+                } else {
+                    [dicStr appendFormat:@"@\"%@\":@\"%@\",", key, value];
+                }
             }
         }
-        return [NSString stringWithFormat:@"/// <#Description#>\n@implementation %@ \n\n+ (JSONKeyMapper *)keyMapper {\n    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:%@];\n}\n\n@end\n", fileName, dicStr];
+        return [NSString stringWithFormat:@"\n/// <#Description#>\n@implementation %@ \n\n+ (JSONKeyMapper *)keyMapper {\n    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:%@];\n}\n\n@end\n", [self upperFirstChar:fileName], dicStr];
     } else {
-        return [NSString stringWithFormat:@"/// <#Description#>\n@implementation %@ \n\n@end\n", fileName];
+        return [NSString stringWithFormat:@"\n/// <#Description#>\n@implementation %@ \n\n@end\n", [self upperFirstChar:fileName]];
     }
 }
 
