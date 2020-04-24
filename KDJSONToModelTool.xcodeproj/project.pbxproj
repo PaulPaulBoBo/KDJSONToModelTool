@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A6780B244407BD00431715 /* NSTextField+KD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6780A244407BD00431715 /* NSTextField+KD.m */; };
 		3A0D0420242DCB950029496A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D041F242DCB950029496A /* AppDelegate.m */; };
 		3A0D0423242DCB950029496A /* KDJSONToModelTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D0421242DCB950029496A /* KDJSONToModelTool.xcdatamodeld */; };
 		3A0D0425242DCB960029496A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A0D0424242DCB960029496A /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04A67809244407BD00431715 /* NSTextField+KD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTextField+KD.h"; sourceTree = "<group>"; };
+		04A6780A244407BD00431715 /* NSTextField+KD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTextField+KD.m"; sourceTree = "<group>"; };
 		3A0D041B242DCB950029496A /* KDJSONToModelTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KDJSONToModelTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0D041E242DCB950029496A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A0D041F242DCB950029496A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				3AF985B9242DFDBF00E5C916 /* RootViewController.xib */,
 				3A0D043F242DEB9A0029496A /* KDTool.h */,
 				3A0D0440242DEB9A0029496A /* KDTool.m */,
+				04A67809244407BD00431715 /* NSTextField+KD.h */,
+				04A6780A244407BD00431715 /* NSTextField+KD.m */,
 				3A0D0424242DCB960029496A /* Assets.xcassets */,
 				3A0D0426242DCB960029496A /* MainMenu.xib */,
 				3A0D0429242DCB960029496A /* Info.plist */,
@@ -162,6 +167,7 @@
 			files = (
 				3A0D0420242DCB950029496A /* AppDelegate.m in Sources */,
 				3A0D0441242DEB9A0029496A /* KDTool.m in Sources */,
+				04A6780B244407BD00431715 /* NSTextField+KD.m in Sources */,
 				3AF985BA242DFDBF00E5C916 /* RootViewController.m in Sources */,
 				3A0D043A242DDE940029496A /* RootWindowController.m in Sources */,
 				3A0D042B242DCB960029496A /* main.m in Sources */,

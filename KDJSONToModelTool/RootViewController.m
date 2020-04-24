@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "KDTool.h"
+#import "NSTextField+KD.h"
 
 @interface RootViewController ()
 
@@ -15,9 +16,10 @@
 @property (weak) IBOutlet NSTextField *baseModelTF;
 @property (weak) IBOutlet NSTextField *preTF;
 @property (weak) IBOutlet NSTextField *keyTF;
-@property (weak) IBOutlet NSTextField *jsonTF;
+@property (unsafe_unretained) IBOutlet NSTextView *jsonTV;
 @property (unsafe_unretained) IBOutlet NSTextView *hTV;
 @property (unsafe_unretained) IBOutlet NSTextView *mTV;
+@property (weak) IBOutlet NSTextField *stateMsg;
 
 @property (nonatomic, strong) KDTool *tool;
 
@@ -30,34 +32,59 @@
     // Do view setup here.
 }
 
+-(void)viewDidDisappear {
+    [super viewDidDisappear];
+    self.modelTF.stringValue = @"";
+    self.baseModelTF.stringValue = @"";
+    self.preTF.stringValue = @"";
+    self.keyTF.stringValue = @"";
+    self.jsonTV.string = @"";
+    self.hTV.string = @"";
+    self.mTV.string = @"";
+}
+
 - (IBAction)transBtnAction:(NSButton *)sender {
     self.hTV.string = @"";
     self.mTV.string = @"";
-    NSString *jsonStr = self.jsonTF.stringValue;
+    NSString *jsonStr = self.jsonTV.string;
     if(!jsonStr.length){
-        [self.tool showTitle:@"错误提示" msg:@"JSON 字符串长度为0！" type:(NSAlertStyleWarning) window:[self.view window]];
+        [self refreshStateMsg:@"JSON 字符串长度为0！" isError:YES];
         return;
     }
     NSDictionary *resultDic = [self.tool getDictWithJsonString:jsonStr finish:^(BOOL isSuccess) {
         
     }];
     if(![resultDic isKindOfClass:[NSDictionary class]]) {
-        self.jsonTF.stringValue = [NSString stringWithFormat:@"请输入JSON字典\n当前数据类型为:%@", [resultDic class]];
+        id obj = nil;
+        if(resultDic == nil) {
+            obj = jsonStr;
+        } else {
+            obj = resultDic;
+        }
+        [self refreshStateMsg:[NSString stringWithFormat:@"请输入JSON字典, 当前数据类型为:%@", [obj class]] isError:YES];
+        self.jsonTV.string = @"";
+        self.hTV.string = @"";
+        self.mTV.string = @"";
+    } else {
+        NSString *fileName = self.modelTF.stringValue.length == 0 ? self.modelTF.placeholderString : self.modelTF.stringValue;
+        NSString *baseName = self.baseModelTF.stringValue.length == 0 ? self.baseModelTF.placeholderString : self.baseModelTF.stringValue;
+        NSString *h = [self createSingleModelHWithDic:resultDic name:fileName baseClassName:baseName hasProtocol:NO];
+        NSString *m = [self createSingleModelMWithDic:resultDic name:fileName hasProtocol:NO];
+        if(h == nil || m == nil || h.length == 0 || m.length == 0) {
+            [self refreshStateMsg:@"JSON转Model失败" isError:YES];
+        } else {
+            self.hTV.string = h;
+            self.mTV.string = m;
+        }
     }
-    NSString *fileName = self.modelTF.stringValue.length == 0 ? self.modelTF.placeholderString : self.modelTF.stringValue;
-    NSString *baseName = self.baseModelTF.stringValue.length == 0 ? self.baseModelTF.placeholderString : self.baseModelTF.stringValue;
-    NSString *h = [self createSingleModelHWithDic:resultDic name:fileName baseClassName:baseName hasProtocol:NO];
-    NSString *m = [self createSingleModelMWithDic:resultDic name:fileName hasProtocol:NO];
-    self.hTV.string = h==nil?@"JSON转Model失败":h;
-    self.mTV.string = m==nil?@"JSON转Model失败":m;
 }
 
 - (IBAction)copyHBtnAction:(NSButton *)sender {
     if(self.hTV.string.length > 0) {
         [self pasteString:self.hTV.string];
-        [self.tool showTitle:@"成功" msg:@".h文件内容拷贝成功" type:(NSAlertStyleInformational) window:[self.view window]];
+        [self refreshStateMsg:@".h文件内容拷贝成功"];
     } else {
-        [self.tool showTitle:@"失败" msg:@".h文件内容为空" type:(NSAlertStyleWarning) window:[self.view window]];
+        [self refreshStateMsg:@".h文件内容为空" isError:YES];
     }
 }
 
@@ -68,21 +95,21 @@
         [self writeToFile:self.hTV.string fileName:hFileName finish:^(BOOL isSuccess, NSString *path) {
             if(isSuccess) {
                 [msg appendFormat:@"%@ 导出成功！\n", hFileName];
-                [self.tool showTitle:@"导出" msg:msg type:(NSAlertStyleInformational) window:[self.view window]];
+                [self refreshStateMsg:msg];
             }
         }];
     } else {
         [msg appendFormat:@"JSON 字符串长度为0！"];
-        [self.tool showTitle:@"导出" msg:msg type:(NSAlertStyleInformational) window:[self.view window]];
+        [self refreshStateMsg:msg isError:YES];
     }
 }
 
 - (IBAction)copyMBtnAction:(NSButton *)sender {
     if(self.mTV.string.length > 0) {
         [self pasteString:self.mTV.string];
-        [self.tool showTitle:@"成功" msg:@".m文件内容拷贝成功" type:(NSAlertStyleInformational) window:[self.view window]];
+        [self refreshStateMsg:@".m文件内容拷贝成功"];
     } else {
-        [self.tool showTitle:@"失败" msg:@".m文件内容为空" type:(NSAlertStyleWarning) window:[self.view window]];
+        [self refreshStateMsg:@".m文件内容为空" isError:YES];
     }
 }
 
@@ -93,16 +120,32 @@
         [self writeToFile:self.mTV.string fileName:mFileName finish:^(BOOL isSuccess, NSString *path) {
             if(isSuccess) {
                 [msg appendFormat:@"%@ 导出成功！\n", mFileName];
-                [self.tool showTitle:@"导出" msg:msg type:(NSAlertStyleInformational) window:[self.view window]];
+                [self refreshStateMsg:msg];
             }
         }];
     } else {
         [msg appendFormat:@"JSON 字符串长度为0！"];
-        [self.tool showTitle:@"导出" msg:msg type:(NSAlertStyleInformational) window:[self.view window]];
+        [self refreshStateMsg:msg isError:YES];
     }
 }
 
 #pragma mark - self
+-(void)refreshStateMsg:(NSString *)msg {
+    [self refreshStateMsg:msg isError:NO];
+}
+
+-(void)refreshStateMsg:(NSString *)msg isError:(BOOL)isError {
+    if(isError) {
+        self.stateMsg.textColor = [NSColor redColor];
+    } else {
+        self.stateMsg.textColor = [NSColor blackColor];
+    }
+    self.stateMsg.stringValue = msg;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.stateMsg.stringValue = @"JSON";
+        self.stateMsg.textColor = [NSColor blackColor];
+    });
+}
 
 -(NSString *)createSingleModelHWithDic:(NSDictionary *)dic name:(NSString *)name baseClassName:(NSString *)baseClassName hasProtocol:(BOOL)hasProtocol {
     NSString *preName = self.preTF.stringValue.length == 0 ? self.preTF.placeholderString : self.preTF.stringValue;
@@ -116,6 +159,10 @@
     for (int i = 0; i < allKeys.count; i++) {
         id obj = [allValue objectAtIndex:i];
         id key = [allKeys objectAtIndex:i];
+        NSString *tmpKey = [NSString stringWithFormat:@"%@", key];
+        if(tmpKey.length == 0) {
+            continue;
+        }
         NSString *tmpStr = @"";
         if([obj isKindOfClass:[NSString class]]) {
             NSString *tmpObj = [NSString stringWithFormat:@"%@", obj];
@@ -165,9 +212,15 @@
             NSArray *allValue = [dic allValues];
             for (int j = 0; j < allKeys.count; j++) {
                 if(allValue.count > 0) {
-                    if([[allValue objectAtIndex:0] isKindOfClass:[NSArray class]]) {
-                        if([[[allValue objectAtIndex:0] objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
-                            [subArrayStr appendString:[self createSingleModelHWithDic:[[allValue objectAtIndex:0] objectAtIndex:0] name:[self upperFirstChar:[allKeys objectAtIndex:0]] baseClassName:baseClassName hasProtocol:YES]];
+                    id value = [allValue objectAtIndex:0];
+                    if([value isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = value;
+                        if(arr.count > 0) {
+                            if([[arr objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                                [subArrayStr appendString:[self createSingleModelHWithDic:[[allValue objectAtIndex:0] objectAtIndex:0] name:[self upperFirstChar:[allKeys objectAtIndex:0]] baseClassName:baseClassName hasProtocol:YES]];
+                            }
+                        } else {
+                            continue;
                         }
                     }
                 }
@@ -238,6 +291,10 @@
     for (int i = 0; i < allKeys.count; i++) {
         id obj = [allValue objectAtIndex:i];
         id key = [allKeys objectAtIndex:i];
+        NSString *tmpKey = [NSString stringWithFormat:@"%@", key];
+        if(tmpKey.length == 0) {
+            continue;
+        }
         if([obj isKindOfClass:[NSString class]]) {
             NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
             if(![transKey isEqual:key]) {
@@ -255,6 +312,7 @@
             }
         }
     }
+    
     if(hasProtocol) {
         name = [NSString stringWithFormat:@"%@Model", name];
     }
@@ -267,18 +325,22 @@
             NSArray *allValue = [dic allValues];
             for (int j = 0; j < allKeys.count; j++) {
                 if(allValue.count > 0) {
-                    if([[allValue objectAtIndex:0] isKindOfClass:[NSArray class]]) {
-                        if([[[allValue objectAtIndex:0] objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
-                            [subArrayStr appendString:[self createSingleModelMWithDic:[[allValue objectAtIndex:0] objectAtIndex:0] name:[allKeys objectAtIndex:0] hasProtocol:YES]];
+                    id value = [allValue objectAtIndex:0];
+                    if([value isKindOfClass:[NSArray class]]) {
+                        NSArray *arr = value;
+                        if(arr.count > 0) {
+                            if([[arr objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                                [subArrayStr appendString:[self createSingleModelMWithDic:[[allValue objectAtIndex:0] objectAtIndex:0] name:[allKeys objectAtIndex:0] hasProtocol:YES]];
+                            }
+                        } else {
+                            continue;
                         }
                     }
                 }
             }
         }
     }
-//    if(subArrayStr.length > 0) {
-//        [subArrayStr appendString:@"\n"];
-//    }
+    
     NSMutableString *subDicStr = [NSMutableString new];
     if(dicClasses.count > 0) {
         for (int i = 0; i < dicClasses.count; i ++) {
@@ -294,9 +356,7 @@
             }
         }
     }
-//    if(subDicStr.length > 0) {
-//        [subDicStr appendString:@"\n"];
-//    }
+    
     return [NSString stringWithFormat:@"%@%@%@",subArrayStr, subDicStr, implementationStr];
 }
 
