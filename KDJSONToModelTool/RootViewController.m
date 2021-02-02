@@ -199,7 +199,7 @@
             [dicClasses addObject:@{dicName:obj}];
         } else {
             NSString *transKey = [self checkKeyIsAble:key prefixStr:preName unableKeys:keywords];
-            tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ *%@; //\n",@"id", transKey];
+            tmpStr = [NSString stringWithFormat:@"@property (nonatomic, strong) %@ %@; //\n",@"id", transKey];
         }
         [mStr appendString:tmpStr];
     }
